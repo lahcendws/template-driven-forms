@@ -1,0 +1,45 @@
+
+<div class="container">
+    <h3>search-movie component</h3>
+<form (ngSubmit)="onSubmit()" [formGroup]="searchMovie" #myForm="ngForm" >
+    
+        <label for="identifiant">Identifiant</label>
+        <input  name="identifiant" type="text" formControlName="identifiant" class="form-control" />
+        <div *ngIf="searchMovie.errors?.['isRequired'] && myForm.submitted"  class="cross-validation-error-message alert alert-danger">
+                      identifiant ou titre  est requis !
+  
+        </div>
+        <span></span> 
+                <div>
+                    <label for="titre">Titre</label>
+        <input name="titre" type="text" formControlName="titre"  class="form-control"/>
+                
+                <div>
+        </div>
+                    <label>Type</label>
+                                <select formControlName="type" class="form-control">
+                                    <option value=""></option>
+                                    <option value="film">Film</option>
+                                    <option value="series">Series</option>
+                                    <option value="episode">Episode</option>
+                                </select>
+                </div>
+                <div>
+                    <label>Fiche</label>
+                                <select formControlName="fiche" class="form-control">
+                                    <option value=""></option>
+                                    <option value="complete">Complete</option>
+                                    <option value="courte">Coutre</option>
+                                </select>
+                </div>
+    
+    <div >
+        <label for="sortie">Annee de sortie</label>
+    <input name="sortie" type="number" formControlName="sortie" class="form-control" [class.is-invalid]/>
+        <div *ngIf="searchMovie.errors?.['min'] && myForm.submitted"   class="cross-validation-error-message alert alert-danger">
+            L'année doit être comprise entre 1900 et Aujourdhui
+        </div>
+    </div>
+    <button type="submit" >Sauvegarder</button>
+</form>
+</div>
